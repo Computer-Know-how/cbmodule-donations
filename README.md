@@ -1,2 +1,2 @@
 # cbmodule-donations
-This module will generate donation forms for ContentBox websites
+This module will generate Stripe donation forms for your ContentBox websites.

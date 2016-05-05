@@ -1,0 +1,52 @@
+/*
+All widgets inherit the following properties available to you:
+
+property name="categoryService"			inject="id:categoryService@cb";
+property name="entryService"			inject="id:entryService@cb";
+property name="pageService"				inject="id:pageService@cb";
+property name="contentService"			inject="id:contentService@cb";
+property name="contentVersionService"	inject="id:contentVersionService@cb";
+property name="authorService"			inject="id:authorService@cb";
+property name="commentService"			inject="id:commentService@cb";
+property name="customHTMLService"		inject="id:customHTMLService@cb";
+property name="cb"						inject="id:CBHelper@cb";
+property name="securityService" 		inject="id:securityService@cb";
+property name="html"					inject="coldbox:plugin:HTMLHelper";
+*/
+
+component extends="contentbox.model.ui.BaseWidget" singleton{
+
+	DonationForm function init(required any controller){
+		// super init
+		super.init( arguments.controller );
+
+		// Widget Properties
+		setPluginName( "DonationForm" );
+		setPluginVersion( "1.0" );
+		setPluginDescription( "A widget that renders donation forms." );
+		setPluginAuthor( "Computer Know How" );
+		setPluginAuthorURL( "http://www.compknowhow.com" );
+		setIcon( "window-text.png" );
+		setCategory( "Content" );
+
+		return this;
+	}
+
+	/**
+	* @formType.label Form Type
+	* @formType.hint Type of form
+	* @formType.optionsUDF getFormTypes
+	*/
+	any function renderIt(string formType = "simple") {
+		return runEvent(event='donation:form.render', eventArguments=arguments);;
+	}
+
+	/**
+	* Return an array of form types, the @ignore annotation means the ContentBox widget editors do not use it only used internally.
+	* @cbignore
+	*/
+	array function getFormTypes(){
+		return ["simple","full"];
+	}
+
+}
