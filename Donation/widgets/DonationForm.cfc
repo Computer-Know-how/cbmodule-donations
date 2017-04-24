@@ -14,19 +14,19 @@ property name="securityService" 		inject="id:securityService@cb";
 property name="html"					inject="coldbox:plugin:HTMLHelper";
 */
 
-component extends="contentbox.model.ui.BaseWidget" singleton{
+component extends="contentbox.models.ui.BaseWidget" singleton{
 
 	DonationForm function init(required any controller){
 		// super init
 		super.init( arguments.controller );
 
 		// Widget Properties
-		setPluginName( "DonationForm" );
-		setPluginVersion( "1.0" );
-		setPluginDescription( "A widget that renders donation forms." );
-		setPluginAuthor( "Computer Know How" );
-		setPluginAuthorURL( "http://www.compknowhow.com" );
-		setIcon( "window-text.png" );
+		setName( "DonationForm" );
+		setVersion( "1.1" );
+		setDescription( "A widget that renders donation forms." );
+		setAuthor( "Computer Know How" );
+		setAuthorURL( "http://www.compknowhow.com" );
+		setIcon( "list" );
 		setCategory( "Content" );
 
 		return this;
@@ -38,7 +38,7 @@ component extends="contentbox.model.ui.BaseWidget" singleton{
 	* @formType.optionsUDF getFormTypes
 	*/
 	any function renderIt(string formType = "simple") {
-		return runEvent(event='donation:form.render', eventArguments=arguments);;
+		return runEvent(event='cbmodule-donation:form.render', eventArguments=arguments);;
 	}
 
 	/**

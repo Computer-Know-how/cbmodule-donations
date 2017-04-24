@@ -212,7 +212,7 @@ component accessors="true"
 	*
 	* @param card (optional) Can be a string token or a Card object
 	*/
-	function createCustomer(card, string coupon="", string email="", string description="", string plan="", trial_end="")
+	function createCustomer(card, string coupon="", string email="", string description="", string plan="", trial_end="", struct metadata)
 	{
 		var gateway = variables.gatewayBaseUrl & "customers";
 		var payload = structNew();
@@ -222,6 +222,7 @@ component accessors="true"
 		if (len(arguments.description))	payload.description = arguments.description;
 		if (len(arguments.plan))		payload.plan = arguments.plan;
 		if (len(arguments.trial_end))	payload.trial_end = dateToUTC(arguments.trial_end);
+		payload.metadata = arguments.metadata;
 
 		return process(gatewayUrl=gateway, payload = payload);
 	}
@@ -251,7 +252,7 @@ component accessors="true"
 		return process(gatewayUrl=gateway, payload = payload, method="get");
 	}
 
-	function createCharge(required money,required card,string description="")
+	function createCharge(required money,required card,string description="",string receipt_email="",struct metadata)
 	{
 		var gateway = variables.gatewayBaseUrl & "charges";
 		var payload = structNew();
@@ -259,6 +260,10 @@ component accessors="true"
 		payload.currency = arguments.money.getCurrency();
 		payload.card = arguments.card;
 		payload.description = arguments.description;
+		payload.metadata = arguments.metadata;
+		if (arguments.receipt_email neq "") {
+			payload.receipt_email = arguments.receipt_email;
+		}
 
 		return process(gatewayUrl=gateway, payload = payload);
 	}
@@ -377,7 +382,17 @@ component accessors="true"
 				//WriteLog(type="Information", file="stripe", text="#keys[i]#");
 				if (lcase(keys[i]) NEQ "card" )
 				{
-					httpService.addParam(type="formfield",name="#lcase(keys[i])#",value=arguments.payload[keys[i]]);
+					if (lcase(keys[i]) EQ "metadata")
+					{
+						for (key in arguments.payload[keys[i]])
+						{
+							httpService.addParam(type="formfield",name="metadata[#lcase(key)#]",value=payload[keys[i]][key]);
+						}
+					}
+					else
+					{
+						httpService.addParam(type="formfield",name="#lcase(keys[i])#",value=arguments.payload[keys[i]]);
+					}
 				}
 				else
 				{

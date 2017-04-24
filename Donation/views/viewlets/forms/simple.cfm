@@ -1,15 +1,16 @@
 <cfoutput>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 	<script type="text/javascript">Stripe.setPublishableKey('#prc.publishableKey#');</script>
 
 	<form action="#event.buildLink(prc.xehFormSubmit)#" method="POST" id="payment-form">
-		#getPlugin("MessageBox").renderit()#
+		#getInstance("messageBox@cbMessageBox").renderit()#
 
-		<div class="payment-errors-container alert alert-error" style="min-height: 38px; display: none;">
-			<i class="icon-info-sign icon-large icon-2x pull-left"></i> <span class="payment-errors"><span>
+		<div class="payment-errors-container alert alert-danger" style="min-height: 38px; display: none;">
+			<i class="fa fa-frown-o fa-lg fa-2x pull-left"></i> <span class="payment-errors"><span>
 		</div>
 
-		<input type="hidden" name="_returnTo" value="#cb.linkSelf()#">
+		<input type="hidden" name="_returnTo" value="#cgi.path_info#">
 
 		<div class="box-content categories">
 			<h4 class="widget-title">Make A Donation</h4>
@@ -32,11 +33,6 @@
 
 			<div class="form-group">
 				<input class="form-control" type="text" placeholder="CVC" size="4" data-stripe="cvc">
-			</div>
-
-			<div class="form-group">
-				<div class="radio-inline"><input id="donationFrequency" name="donationFrequency" type="radio" value="onetime" checked /> One Time</div>
-				<div class="radio-inline"><input id="donationFrequency" name="donationFrequency" type="radio" value="recurring" /> Monthly Recurring</div>
 			</div>
 
 			<input type="submit" class="btn btn-default submit" value="Donate Now">

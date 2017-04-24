@@ -4,13 +4,13 @@ component extends="base" {
 	property name="cb" 				inject="cbHelper@cb";
 
 	function index(event,rc,prc){
-		prc.settings = deserializeJSON(settingService.getSetting( "Donation" ));
+		prc.settings = deserializeJSON(settingService.getSetting( "cbmodule-donation" ));
 
 		event.setView("settings/index");
 	}
 
 	function saveSettings(event,rc,prc){
-		var oSetting = settingService.findWhere( { name="Donation" } );
+		var oSetting = settingService.findWhere( { name="cbmodule-donation" } );
 
 		// Get Stripe settings from user input
 		newSettings = {"stripe"={"mode"=rc.mode, "livePublishableKey"=rc.livePublishableKey, "liveSecretKey"=rc.liveSecretKey, "testPublishableKey"=rc.testPublishableKey, "testSecretKey"=rc.testSecretKey}};
@@ -21,8 +21,8 @@ component extends="base" {
 		// Flush the settings cache so our new settings are reflected
 		settingService.flushSettingsCache();
 
-		getPlugin("MessageBox").info("Settings Saved & Updated!");
-		cb.setNextModuleEvent("Donation","settings.index");
+		getInstance("messageBox@cbMessageBox").info("Settings Saved & Updated!");
+		cb.setNextModuleEvent("donation","settings.index");
 	}
 
 }

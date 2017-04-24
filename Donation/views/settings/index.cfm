@@ -1,59 +1,73 @@
 <cfoutput>
-#renderView( "viewlets/assets" )#
-<!--============================Main Column============================-->
-<div class="row-fluid">
-	<div class="span9" id="main-content">
-		<div class="box">
-			<!--- Body Header --->
-			<div class="header">
-				<i class="icon-magic"></i> Settings
-			</div>
-			<!--- Body --->
-			<div class="body" id="mainBody">
-				#getPlugin("MessageBox").renderit()#
-				<div class="tabbable tabs-left">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="##stripe" data-toggle="tab"><i class="icon-reorder"></i> Stripe</a></li>
+	#renderView( "viewlets/assets" )#
+	<!--============================Main Column============================-->
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="h1">
+				<i class="fa fa-gears"></i> Settings
+			</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-9">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					#getInstance("MessageBox@cbmessagebox").renderit()#
 
-						<!--- <li><a href="##containersStyleHooks" data-toggle="tab"><i class="icon-th-large"></i> Containers / Style Hooks</a></li> --->
-					</ul>
+					<div class="tab-wrapper tab-primary">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="##stripe" data-toggle="tab"><i class="fa fa-credit-card"></i> Stripe</a></li>
+						</ul>
 
-					<div class="tab-content">
-						<!--- Form Details --->
-						<div class="tab-pane active" id="stripe">
-							#html.startForm(action="#cb.buildModuleLink('Donation',prc.xehSettingsSave)#",name="settingsForm")#
-								#html.startFieldset(legend="Stripe")#
-									<label for="mode">Mode:</label>
-									#html.radioButton(name="mode",checked=(prc.settings.stripe.mode eq 'Live'),value="Live")# LIVE
-									#html.radioButton(name="mode",checked=(prc.settings.stripe.mode eq 'Test'),value="Test")# TEST<br><br>
+						<div class="tab-content">
+							<!--- Settings: Calendar Settings --->
+							<div class="tab-pane active" id="stripe">
 
-									#html.textField(name="testSecretKey", label="Test Secret Key:", value="#prc.settings.stripe.testSecretKey#", class="textfield large", size=40)#<br/>
+								#html.startForm(action="#cb.buildModuleLink('donation',prc.xehSettingsSave)#",name="settingsForm")#
+									
+									<div class="form-group">
+										#html.label(class="control-label", field="mode", content="Mode:")#
 
-									#html.textField(name="testPublishableKey", label="Test Publishable Key:", value="#prc.settings.stripe.testPublishableKey#", class="textfield large", size=40)#
+										<div class="controls">
+											#html.radioButton(name="mode", checked=(prc.settings.stripe.mode eq 'Live'), value="Live")# LIVE
+											#html.radioButton(name="mode", checked=(prc.settings.stripe.mode eq 'Test'), value="Test")# TEST
+										</div>
+									</div>
 
-									#html.textField(name="liveSecretKey", label="Live Secret Key:", value="#prc.settings.stripe.liveSecretKey#", class="textfield large", size=40)#<br/>
+									<div class="form-group">
+										#html.textField(name="testSecretKey", label="Test Secret Key:", value="#prc.settings.stripe.testSecretKey#", class="form-control")#
+									</div>
 
-									#html.textField(name="livePublishableKey", label="Live Publishable Key:", value="#prc.settings.stripe.livePublishableKey#", class="textfield large", size=40)#<br/><br/>
+									<div class="form-group">
+										#html.textField(name="testPublishableKey", label="Test Publishable Key:", value="#prc.settings.stripe.testPublishableKey#", class="form-control")#
+									</div>
 
-									<small>Setup your account and get your keys <a href="https://stripe.com" target="_blank">here</a></small>
+									<div class="form-group">
+										#html.textField(name="liveSecretKey", label="Live Secret Key:", value="#prc.settings.stripe.liveSecretKey#", class="form-control")#
+									</div>
+
+									<div class="form-group">
+										#html.textField(name="livePublishableKey", label="Live Publishable Key:", value="#prc.settings.stripe.livePublishableKey#", class="form-control")#
+									</div>
+
+									<small>Setup your account and get your keys <a href="https://stripe.com" target="_blank">here</a>.</small>
 
 									<div class="form-actions">
 										#html.submitButton(value="Save Settings", class="btn btn-danger", title="Save Settings")#
 									</div>
-								#html.endFieldSet()#
-							#html.endForm()#
+								#html.endForm()#
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!--============================ Sidebar ============================-->
-	<div class="span3" id="main-sidebar">
-		<cfinclude template="../sidebar/actions.cfm" >
-		<cfinclude template="../sidebar/help.cfm" >
-		<cfinclude template="../sidebar/about.cfm" >
+		<!--============================ Sidebar ============================-->
+		<div class="col-md-3">
+			<cfinclude template="../sidebar/actions.cfm">
+			<cfinclude template="../sidebar/help.cfm">
+			<cfinclude template="../sidebar/about.cfm">
+		</div>
 	</div>
-</div>
 </cfoutput>

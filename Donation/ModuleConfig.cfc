@@ -10,13 +10,13 @@ component {
 	this.author 			= "Computer Know How";
 	this.webURL 			= "http://www.compknowhow.com";
 	this.description 		= "A cool donation form builder for ContentBox";
-	this.version			= "1.0";
+	this.version			= "1.1";
 	// If true, looks for views in the parent first, if not found, then in the module. Else vice-versa
 	this.viewParentLookup 	= true;
 	// If true, looks for layouts in the parent first, if not found, then in module. Else vice-versa
 	this.layoutParentLookup = true;
 	// Module Entry Point
-	this.entryPoint			= "Donation";
+	this.entryPoint			= "donation";
 
 	function configure(){
 		// module settings - stored in modules.name.settings
@@ -33,10 +33,6 @@ component {
 
 		// Interceptors
 		interceptors = [];
-
-		//Mappings
-		binder.map("DonationService@Donation").to("#moduleMapping#.model.DonationService");
-
 	}
 
 	/**
@@ -48,7 +44,7 @@ component {
 			// Let's add ourselves to the main menu in the Modules section
 			var menuService = controller.getWireBox().getInstance("AdminMenuService@cb");
 			// Add Menu Contribution
-			menuService.addSubMenu(topMenu=menuService.MODULES,name="Donation",label="Donation",href="#menuService.buildModuleLink('Donation','report.index')#");
+			menuService.addSubMenu(topMenu=menuService.MODULES,name="Donation",label="Donation",href="#menuService.buildModuleLink('donation','report.index')#");
 		}
 	}
 
@@ -58,10 +54,10 @@ component {
 	function onActivate(){
 		var settingService = controller.getWireBox().getInstance("SettingService@cb");
 		// store default settings
-		var findArgs = {name="Donation"};
+		var findArgs = {name="cbmodule-donation"};
 		var setting = settingService.findWhere(criteria=findArgs);
 		if( isNull(setting) ){
-			var args = {name="Donation", value=serializeJSON( settings )};
+			var args = {name="cbmodule-donation", value=serializeJSON( settings )};
 			var formBuilderSettings = settingService.new(properties=args);
 			settingService.save( formBuilderSettings );
 		}
@@ -88,7 +84,7 @@ component {
 	*/
 	function onDeactivate(){
 		var settingService = controller.getWireBox().getInstance("SettingService@cb");
-		var args = {name="Donation"};
+		var args = {name="cbmodule-donation"};
 		var setting = settingService.findWhere(criteria=args);
 		if( !isNull(setting) ){
 			settingService.delete( setting );
