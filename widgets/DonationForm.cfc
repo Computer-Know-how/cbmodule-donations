@@ -24,7 +24,7 @@ component extends="contentbox.models.ui.BaseWidget" singleton{
 		setName( "DonationForm" );
 		setVersion( "1.1" );
 		setDescription( "A widget that renders donation forms." );
-		setAuthor( "Computer Know How" );
+		setAuthor( "Computer Know How, LLC" );
 		setAuthorURL( "http://www.compknowhow.com" );
 		setIcon( "list" );
 		setCategory( "Content" );

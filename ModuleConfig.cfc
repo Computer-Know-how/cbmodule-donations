@@ -7,7 +7,7 @@ component {
 
 	// Module Properties
 	this.title 				= "Donation";
-	this.author 			= "Computer Know How";
+	this.author 			= "Computer Know How, LLC";
 	this.webURL 			= "http://www.compknowhow.com";
 	this.description 		= "A cool donation form builder for ContentBox";
 	this.version			= "1.1";
