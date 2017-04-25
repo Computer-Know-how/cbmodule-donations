@@ -23,7 +23,7 @@
 							<!--- Settings: Calendar Settings --->
 							<div class="tab-pane active" id="stripe">
 
-								#html.startForm(action="#cb.buildModuleLink('donation',prc.xehSettingsSave)#",name="settingsForm")#
+								#html.startForm(action="#cb.buildModuleLink('cbdonation',prc.xehSettingsSave)#",name="settingsForm")#
 									
 									<div class="form-group">
 										#html.label(class="control-label", field="mode", content="Mode:")#

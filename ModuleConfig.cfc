@@ -16,7 +16,7 @@ component {
 	// If true, looks for layouts in the parent first, if not found, then in module. Else vice-versa
 	this.layoutParentLookup = true;
 	// Module Entry Point
-	this.entryPoint			= "donation";
+	this.entryPoint			= "cbdonation";
 
 	function configure(){
 		// module settings - stored in modules.name.settings
@@ -44,7 +44,7 @@ component {
 			// Let's add ourselves to the main menu in the Modules section
 			var menuService = controller.getWireBox().getInstance("AdminMenuService@cb");
 			// Add Menu Contribution
-			menuService.addSubMenu(topMenu=menuService.MODULES,name="Donation",label="Donation",href="#menuService.buildModuleLink('donation','report.index')#");
+			menuService.addSubMenu(topMenu=menuService.MODULES,name="Donation",label="Donation",href="#menuService.buildModuleLink('cbdonation','report.index')#");
 		}
 	}
 
@@ -54,10 +54,10 @@ component {
 	function onActivate(){
 		var settingService = controller.getWireBox().getInstance("SettingService@cb");
 		// store default settings
-		var findArgs = {name="cbmodule-donation"};
+		var findArgs = {name="donation"};
 		var setting = settingService.findWhere(criteria=findArgs);
 		if( isNull(setting) ){
-			var args = {name="cbmodule-donation", value=serializeJSON( settings )};
+			var args = {name="donation", value=serializeJSON( settings )};
 			var formBuilderSettings = settingService.new(properties=args);
 			settingService.save( formBuilderSettings );
 		}
@@ -84,7 +84,7 @@ component {
 	*/
 	function onDeactivate(){
 		var settingService = controller.getWireBox().getInstance("SettingService@cb");
-		var args = {name="cbmodule-donation"};
+		var args = {name="donation"};
 		var setting = settingService.findWhere(criteria=args);
 		if( !isNull(setting) ){
 			settingService.delete( setting );
