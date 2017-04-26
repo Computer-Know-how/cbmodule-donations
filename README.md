@@ -3,7 +3,7 @@ ContentBox Donation Module
 
 Author
 -----------------
-Computer Know How/Seth Engen
+Computer Know How, LLC/Seth Engen
 
 Description
 -----------------

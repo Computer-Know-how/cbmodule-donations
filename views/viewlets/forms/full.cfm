@@ -13,7 +13,7 @@
 			<i class="icon-info-sign icon-large icon-2x pull-left"></i> <span class="payment-errors"><span>
 		</div>
 
-		<input type="hidden" name="_returnTo" value="#cgi.path_info#">
+		<input type="hidden" name="_returnTo" value="#cb.linkSelf()#">
 
 		<fieldset>
 			<legend>Donation Information</legend>

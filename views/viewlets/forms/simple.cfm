@@ -13,7 +13,7 @@
 			<i class="fa fa-frown-o fa-lg fa-2x pull-left"></i> <span class="payment-errors"><span>
 		</div>
 
-		<input type="hidden" name="_returnTo" value="#cgi.path_info#">
+		<input type="hidden" name="_returnTo" value="#cb.linkSelf()#">
 
 		<div class="box-content categories">
 			<h4 class="widget-title">Make A Donation</h4>
