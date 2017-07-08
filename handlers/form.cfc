@@ -34,7 +34,7 @@ component {
 		param name="rc.description" default="";
 		param name="rc.donationFrequency" default="onetime";
 
-		var stripe = createObject("component", "#event.getModuleRoot("cbdonation")#.model.stripe.stripe").init(secretKey=prc.secretKey);
+		var stripe = createObject("component", "#event.getModuleRoot("cbdonation")#.models.stripe.Stripe").init(secretKey=prc.secretKey);
 
 		var money = stripe.createMoney(rc.amount*100);
 
