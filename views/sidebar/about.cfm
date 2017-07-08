@@ -8,7 +8,7 @@
 		</div>
 		<div class="panel-body">
 			<a href="http://www.CompKnowHow.com" target="_blank" title="Your ColdBox and ContentBox specialists.">
-			<div class="center"><img src="#event.getModuleRoot('donation')#/includes/images/logo.png" alt="Computer Know How, LLC" border="0" /></a><br/></div>
+			<div class="center"><img src="#event.getModuleRoot('cbdonation')#/includes/images/logo.png" alt="Computer Know How, LLC" border="0" /></a><br/></div>
 
 			<p>
 				<strong>Computer Know How, LLC</strong>

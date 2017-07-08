@@ -4,13 +4,13 @@ component extends="base" {
 	property name="cb" 				inject="cbHelper@cb";
 
 	function index(event,rc,prc){
-		prc.settings = deserializeJSON(settingService.getSetting( "donation" ));
+		prc.settings = deserializeJSON(settingService.getSetting( "cbdonation" ));
 
 		event.setView("settings/index");
 	}
 
 	function saveSettings(event,rc,prc){
-		var oSetting = settingService.findWhere( { name="donation" } );
+		var oSetting = settingService.findWhere( { name="cbdonation" } );
 
 		// Get Stripe settings from user input
 		newSettings = {"stripe"={"mode"=rc.mode, "livePublishableKey"=rc.livePublishableKey, "liveSecretKey"=rc.liveSecretKey, "testPublishableKey"=rc.testPublishableKey, "testSecretKey"=rc.testSecretKey}};

@@ -6,7 +6,7 @@ component {
 		var prc = event.getCollection(private=true);
 
 		// get module root
-		prc.moduleRoot = event.getModuleRoot("donation");
+		prc.moduleRoot = event.getModuleRoot("cbdonation");
 
 		prc.xehReports = "report.index";
 		prc.xehSettings = "settings.index";

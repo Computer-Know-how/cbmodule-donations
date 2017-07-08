@@ -1,7 +1,7 @@
 {
 	"location": "https://github.com/Computer-Know-how/cbmodule-donations/raw/master/donation.zip",
 	"name": "cbmodule-donation",
-	"packageDirectory": "donation",
+	"packageDirectory": "cbdonation",
 	"slug": "cbmodule-donation",
 	"type": "contentbox-modules",
 	"version": "1.1"

@@ -54,10 +54,10 @@ component {
 	function onActivate(){
 		var settingService = controller.getWireBox().getInstance("SettingService@cb");
 		// store default settings
-		var findArgs = {name="donation"};
+		var findArgs = {name="cbdonation"};
 		var setting = settingService.findWhere(criteria=findArgs);
 		if( isNull(setting) ){
-			var args = {name="donation", value=serializeJSON( settings )};
+			var args = {name="cbdonation", value=serializeJSON( settings )};
 			var formBuilderSettings = settingService.new(properties=args);
 			settingService.save( formBuilderSettings );
 		}
@@ -84,7 +84,7 @@ component {
 	*/
 	function onDeactivate(){
 		var settingService = controller.getWireBox().getInstance("SettingService@cb");
-		var args = {name="donation"};
+		var args = {name="cbdonation"};
 		var setting = settingService.findWhere(criteria=args);
 		if( !isNull(setting) ){
 			settingService.delete( setting );

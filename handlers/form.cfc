@@ -3,7 +3,7 @@ component {
 	property name="settingService" 	inject="settingService@cb";
 
 	function preHandler(event,action,eventArguments,rc,prc){
-		var oSetting = settingService.findWhere( { name="donation" } );
+		var oSetting = settingService.findWhere( { name="cbdonation" } );
 		var settings = deserializeJSON(oSetting.getValue());
 
 		if(settings.stripe.mode eq "LIVE") {
@@ -19,9 +19,9 @@ component {
 		prc.xehFormSubmit = "cbdonation.form.submit";
 
 		if( arguments.formType eq "simple" ){
-			return renderView(view="viewlets/forms/simple", module="donation");
+			return renderView(view="viewlets/forms/simple", module="cbdonation");
 		} else if(arguments.formType eq "full") {
-			return renderView(view="viewlets/forms/full", module="donation");
+			return renderView(view="viewlets/forms/full", module="cbdonation");
 		} else {
 			return "Form type '" & arguments.formType & "' not found.";
 		}
@@ -34,7 +34,7 @@ component {
 		param name="rc.description" default="";
 		param name="rc.donationFrequency" default="onetime";
 
-		var stripe = createObject("component", "#event.getModuleRoot("donation")#.model.stripe.stripe").init(secretKey=prc.secretKey);
+		var stripe = createObject("component", "#event.getModuleRoot("cbdonation")#.model.stripe.stripe").init(secretKey=prc.secretKey);
 
 		var money = stripe.createMoney(rc.amount*100);
 

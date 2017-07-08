@@ -38,7 +38,7 @@ component extends="contentbox.models.ui.BaseWidget" singleton{
 	* @formType.optionsUDF getFormTypes
 	*/
 	any function renderIt(string formType = "simple") {
-		return runEvent(event='donation:form.render', eventArguments=arguments);;
+		return runEvent(event='cbdonation:form.render', eventArguments=arguments);;
 	}
 
 	/**
